@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TodoList Pro</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#121212">
+  <link rel="icon" type="image/png" href="icon-192x192.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <header class="header">
+      <h1 class="app-title">TodoList Pro</h1>
+      <button class="mobile-calendar-toggle" id="mobileCalendarToggle">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+        </svg>
+        Calendar
+      </button>
+    </header>
+    <main class="main-content">
+      <section class="todo-section">
+        <div class="add-task-form">
+          <div class="task-input-container">
+            <input type="text" id="taskInput" class="task-input" placeholder="Add a new task..." maxlength="200">
+            <button id="addTaskBtn" class="add-btn">Add</button>
+          </div>
+          <div class="task-meta-container">
+            <div class="form-group">
+              <label for="taskDueDate" class="form-label">Due Date</label>
+              <input type="date" id="taskDueDate" class="due-date-input">
+            </div>
+            <div class="form-group">
+              <label for="taskPriority" class="form-label">Priority</label>
+              <select id="taskPriority" class="priority-select">
+                <option value="high">High</option>
+                <option value="medium" selected>Medium</option>
+                <option value="low">Low</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <ul class="todo-list" id="todoList"></ul>
+        <div class="filter-controls">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="active">Active</button>
+          <button class="filter-btn" data-filter="completed">Completed</button>
+          <button class="filter-btn" data-filter="high-priority">High Priority</button>
+        </div>
+      </section>
+      <section class="calendar-section" id="calendarSection">
+        <div class="calendar-header">
+          <button id="prevMonthBtn">&lt;</button>
+          <span id="calendarMonthYear"></span>
+          <button id="nextMonthBtn">&gt;</button>
+        </div>
+        <div class="calendar-grid" id="calendarGrid"></div>
+      </section>
+    </main>
+  </div>
+  <script src="app.js"></script>
+  <script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('service-worker.js');
+    });
+  }
+  </script>
+</body>
+</html>
